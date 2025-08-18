@@ -1,9 +1,9 @@
 "use client";
 import { Navbar } from "./components/nav";
-import Image from "next/image";
 import NearbyCarousel from "./components/nearby_carousel";
 import LandingPage from "./home/page";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, Suspense } from "react";
+
 import Footer from "./footer";
 
 export default function HomePage() {
@@ -41,7 +41,11 @@ export default function HomePage() {
 
   return (
     <div>
-      <Navbar hasShadow={showHeaderShadow} />
+      <div className="fixed inset-0 bg-[url('/hero-bg.jpg')] bg-cover bg-center z-[-1]"></div>
+      {/* Navbar with shadow based on scroll position */}
+      <Suspense fallback={<div />}>
+        <Navbar hasShadow={showHeaderShadow} />
+      </Suspense>
       <LandingPage />
       <main>
         <section
@@ -63,7 +67,7 @@ export default function HomePage() {
 
             {/* Right: Text content */}
             <div>
-              <div className="flex flex-row mb-2">
+              <div className="flex flex-row mb-4">
                 <div className="border-l-1 text-sm border-black"></div>
                 <p className="text-sm font-400 tracking-wider text-gray-500 uppercase ml-2">
                   About Riverland
@@ -99,7 +103,7 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
             {/* left: Text content */}
             <div className="flex flex-col justify-center md:items-start items-center text-left max-w-xl p-6">
-              <div className="flex flex-row mb-2">
+              <div className="flex flex-row mb-4">
                 <div className="border-l-1 text-sm border-black"></div>
                 <p className="text-sm font-400 tracking-wider text-gray-500 uppercase ml-2">
                   Location

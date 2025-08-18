@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { getNearbyPlaces } from "../api/contact/nearbyPlaces"; // update path if needed
+import { getNearbyPlaces } from "../api/contact/nearbyPlaces";
+import { NearbyPlace } from "../types/nearby_places";
 
 export default function NearbyCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [locations, setLocations] = useState<any[]>([]);
+  const [locations, setLocations] = useState<NearbyPlace[]>([]);
 
   // Fetch from Sanity
   useEffect(() => {
@@ -16,7 +18,6 @@ export default function NearbyCarousel() {
     }
     fetchData();
   }, []);
-
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % locations.length);
   };
@@ -68,7 +69,7 @@ export default function NearbyCarousel() {
                 >
                   {/* Logo Image */}
                   {location.logoUrl ? (
-                    <img
+                    <Image
                       src={location.logoUrl}
                       alt={location.title}
                       className="w-[200px] h-[240px] object-contain mx-auto mb-4"
