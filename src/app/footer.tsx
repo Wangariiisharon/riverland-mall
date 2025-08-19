@@ -1,5 +1,33 @@
+"use client";
 import Image from "next/image";
+import { useState } from "react";
+
 export default function Footer() {
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const AddedAt = new Date().toISOString();
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, AddedAt }),
+      });
+
+      if (response.ok) {
+        alert("Sent successfully!");
+        setEmail(""); // Clear the form
+      } else {
+        alert("Failed to send message.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("An error occurred. Please try again.");
+    }
+  };
   return (
     <footer className="w-full bg-[#172D44]/6 shadow text-[#00032E] pt-12">
       <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -104,7 +132,7 @@ export default function Footer() {
           <h4 className="font-medium text-[#00032E]">
             Subscribe For <span className="text-[#D6A829]">Our Newsletter</span>
           </h4>
-          <div className="flex w-full md:w-auto">
+          {/* <div className="flex w-full md:w-auto">
             <input
               type="email"
               placeholder="Please Enter Your E-Mail Address"
@@ -113,7 +141,23 @@ export default function Footer() {
             <button className="bg-yellow-600 px-4 rounded-r-md text-white hover:bg-yellow-700">
               <i className="fas fa-arrow-right"></i>
             </button>
-          </div>
+          </div> */}
+          <form
+            onSubmit={handleSubmit}
+            className="mt-6 flex  w-full max-w-lg  gap-x-2 px-2"
+          >
+            <input
+              type="email"
+              placeholder="Please Enter Your E-Mail Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="px-4 py-2 rounded-l-md bg-gray-800 text-white placeholder-gray-400 focus:outline-none w-full md:w-72"
+              required
+            />
+            <button className="bg-yellow-600 px-4 rounded-r-md text-white hover:bg-yellow-700">
+              <i className="fas fa-arrow-right"></i>
+            </button>
+          </form>
         </div>
       </div>
 

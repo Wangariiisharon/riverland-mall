@@ -35,7 +35,7 @@ export default function NearbyCarousel() {
   }
 
   return (
-    <div className="mt-20 relative overflow-hidden flex flex-col items-center justify-center">
+    <div className="mt-20 relative flex flex-col items-center justify-center">
       <div className="w-full max-w-6xl mx-auto px-8">
         <div className="flex items-center justify-center space-x-8">
           {locations.map((location, index) => {
@@ -62,7 +62,7 @@ export default function NearbyCarousel() {
               >
                 <div
                   className={`
-                     rounded-md shadow-md p-6 text-center
+                     rounded-md p-6 text-center
                     ${isActive ? "shadow-2xl" : "shadow-md"}
                     min-w-[200px] max-w-[240px]
                   `}
@@ -72,6 +72,8 @@ export default function NearbyCarousel() {
                     <Image
                       src={location.logoUrl}
                       alt={location.title}
+                      width={200}
+                      height={240}
                       className="w-[200px] h-[240px] object-contain mx-auto mb-4"
                     />
                   ) : (

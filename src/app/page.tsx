@@ -41,7 +41,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <div className="fixed inset-0 bg-[url('/hero-bg.jpg')] bg-cover bg-center z-[-1]"></div>
+      <div className="fixed inset-0 z-[-1]"></div>
       {/* Navbar with shadow based on scroll position */}
       <Suspense fallback={<div />}>
         <Navbar hasShadow={showHeaderShadow} />
@@ -51,22 +51,22 @@ export default function HomePage() {
         <section
           id="about"
           ref={aboutRef}
-          className="pt-30 bg-[#E7E9EB] flex items-center justify-center"
+          className="pt-30 bg-[#E7E9EB] flex flex-col items-center justify-center px-4 sm:px-6"
         >
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-            {/* Left: Image */}
-            <div className="w-full max-w-[640px] aspect-[640/616] rounded-[20px] bg-gray-500">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center w-full">
+            {/* Text content - matching location section structure */}
+            <div className="w-full h-[300px] md:w-[600px] md:h-[600px] rounded-[20px] bg-gray-500 overflow-hidden">
+              {/* For actual image, use something like: */}
               {/* <Image
-                src="/your-image.jpg"
-                alt="About Riverland"
-                fill
-                className="object-cover"
-                priority
-              /> */}
+        src="/about-image.jpg"
+        alt="About Riverland Mall"
+        width={600}
+        height={600}
+        className="w-full h-full object-cover"
+        sizes="(max-width: 768px) 100vw, 600px"
+      /> */}
             </div>
-
-            {/* Right: Text content */}
-            <div>
+            <div className="md:ml-10">
               <div className="flex flex-row mb-4">
                 <div className="border-l-1 text-sm border-black"></div>
                 <p className="text-sm font-400 tracking-wider text-gray-500 uppercase ml-2">
@@ -74,74 +74,81 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Luxury with Purpose, Community at Heart{" "}
+              <h2 className="text-3xl font-bold text-gray-900 mb-4 leading-snug">
+                Luxury with Purpose, <br /> Community at Heart
               </h2>
-              <p className="text-gray-700 mb-4">
-                Riverland Mall is a modern lifestyle destination designed to
-                bring together retail, dining, and entertainment under one roof.
-                Built with sustainability and innovation in mind, the mall
-                combines elegant architecture with eco-conscious design,
-                creating a space that is both functional and inspiring.
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                Riverland Mall is a modern lifestyle destination <br />
+                designed to bring together retail, dining, and <br />{" "}
+                entertainment under one roof. Built with <br /> sustainability
+                and innovation in mind, the mall <br /> combines elegant
+                architecture with eco-conscious <br />
+                design, creating a space that is both functional and <br />
+                inspiring.
               </p>
-              <p className="text-gray-700 mb-6">
-                More than a shopping center, Riverland Mall is a vibrant
-                community hub where businesses thrive, families gather, and
-                memorable experiences are made.
+              <p className="text-gray-700 mb-6 leading-relaxed">
+                More than a shopping center, Riverland Mall is a <br /> vibrant
+                community hub where businesses thrive, <br /> families gather,
+                and memorable experiences are <br /> made.
               </p>
               <button className="bg-[#D6A829] hover:bg-yellow-600 text-white font-semibold py-2 px-6 rounded-md transition-colors">
                 Explore Now
               </button>
             </div>
+
+            {/* Image container - identical to location section */}
           </div>
         </section>
         <section
           id="location"
           ref={locationRef}
-          className="pt-30 bg-[#E7E9EB] flex flex-col items-center justify-center"
+          className="pt-30 bg-[#E7E9EB] flex flex-col items-center justify-center px-4 sm:px-6"
         >
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-            {/* left: Text content */}
-            <div className="flex flex-col justify-center md:items-start items-center text-left max-w-xl p-6">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center w-full">
+            {/* Text content - Added responsive padding/margin */}
+            <div className="md:ml-10">
               <div className="flex flex-row mb-4">
                 <div className="border-l-1 text-sm border-black"></div>
                 <p className="text-sm font-400 tracking-wider text-gray-500 uppercase ml-2">
                   Location
                 </p>
               </div>
-              <h2 className="text-3xl text-pretty font-bold text-gray-900 mb-4">
-                Seamlessly Connected, Perfectly Positioned{" "}
+
+              <h2 className="text-3xl font-bold text-gray-900 mb-4 leading-snug">
+                Seamlessly Connected, Perfectly Positioned
               </h2>
               <p className="text-gray-700 mb-4 leading-relaxed">
-                Riverland Mall is located in the highly connected neighborhood
-                of Runda, making it easy to access from key residential and
-                business areas.
+                Riverland Mall is located in the highly connected <br />
+                neighborhood of Runda, making it easy to access <br /> from key
+                residential and business areas.
               </p>
-
               <p className="text-gray-700 mb-6 leading-relaxed">
-                Its central position ensures steady visitor flow from families,
-                professionals, and students who frequent the area for shopping,
-                dining, and leisure. With convenient transport links and ample
-                parking, Riverland Mall serves as a welcoming destination for
+                Its central position ensures steady visitor flow from <br />
+                families, professionals, and students who frequent <br /> the
+                area for shopping, dining, and leisure. With <br /> convenient
+                transport links and ample parking,
+                <br /> Riverland Mall serves as a welcoming destination for
+                <br />
                 the wider community.
               </p>
-              <button className="bg-[#D6A829] hover:bg-yellow-600 text-white font-semibold py-2 px-6 rounded-md transition-colors">
-                Explore Now
-              </button>
             </div>
-            {/* right: Image */}
 
-            <div className="w-full max-w-[640px] aspect-[640/616] rounded-[20px] bg-gray-500">
+            {/* Image container - Responsive sizing */}
+            <div className="w-full h-[300px] md:w-[600px] md:h-[600px] rounded-[20px] bg-gray-500 overflow-hidden">
+              {/* For actual image, use something like: */}
               {/* <Image
-                src="/your-image.jpg"
-                alt="About Riverland"
-                fill
-                className="object-cover"
-                priority
-              /> */}
+        src="/location-image.jpg"
+        alt="Riverland Mall Location"
+        width={600}
+        height={600}
+        className="w-full h-full object-cover"
+        sizes="(max-width: 768px) 100vw, 600px"
+      /> */}
             </div>
           </div>
-          <div className="mt-30">
+
+          {/* Nearby section */}
+          <div className="mt-30 w-full max-w-6xl">
             <h1 className="text-2xl text-pretty font-medium text-gray-900 mb-4 text-center">
               Shop the Riverland Experience
             </h1>

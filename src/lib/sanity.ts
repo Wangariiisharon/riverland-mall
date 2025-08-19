@@ -5,5 +5,5 @@ export const client = createClient({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
   apiVersion: "2022-03-07",
   useCdn: false,
-  token: process.env.SANITY_API_WRITE_TOKEN, // Make sure this token has write permissions
+  token: process.env.SANITY_API_WRITE_TOKEN, //ensure token has write permissions
 });
