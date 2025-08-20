@@ -57,8 +57,8 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <Navbar hasShadow={showHeaderShadow} />
           {children}
-          <Footer />
         </Suspense>
+        <Footer />
       </body>
     </html>
   );

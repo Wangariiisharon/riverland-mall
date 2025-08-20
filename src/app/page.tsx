@@ -3,8 +3,6 @@ import NearbyCarousel from "./components/nearby_carousel";
 import LandingPage from "./home/page";
 import { useRef, useEffect, useState } from "react";
 
-import Footer from "./components/footer";
-
 export default function HomePage() {
   const aboutRef = useRef<HTMLDivElement | null>(null);
   const locationRef = useRef<HTMLDivElement | null>(null);
@@ -152,9 +150,7 @@ export default function HomePage() {
           id="contact"
           ref={contactRef}
           className="flex items-center justify-center"
-        >
-          <Footer />
-        </section>
+        ></section>
       </main>
     </div>
   );
