@@ -1,10 +1,9 @@
 "use client";
-import { Navbar } from "./components/nav";
 import NearbyCarousel from "./components/nearby_carousel";
 import LandingPage from "./home/page";
-import { useRef, useEffect, useState, Suspense } from "react";
+import { useRef, useEffect, useState } from "react";
 
-import Footer from "./footer";
+import Footer from "./components/footer";
 
 export default function HomePage() {
   const aboutRef = useRef<HTMLDivElement | null>(null);
@@ -42,10 +41,6 @@ export default function HomePage() {
   return (
     <div>
       <div className="fixed inset-0 z-[-1]"></div>
-      {/* Navbar with shadow based on scroll position */}
-      <Suspense fallback={<div />}>
-        <Navbar hasShadow={showHeaderShadow} />
-      </Suspense>
       <LandingPage />
       <main>
         <section
@@ -54,9 +49,7 @@ export default function HomePage() {
           className="pt-30 bg-[#E7E9EB] flex flex-col items-center justify-center px-4 sm:px-6"
         >
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center w-full">
-            {/* Text content - matching location section structure */}
             <div className="w-full h-[300px] md:w-[600px] md:h-[600px] rounded-[20px] bg-gray-500 overflow-hidden">
-              {/* For actual image, use something like: */}
               {/* <Image
         src="/about-image.jpg"
         alt="About Riverland Mall"

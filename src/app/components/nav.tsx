@@ -21,6 +21,9 @@ export function Navbar({ hasShadow }: { hasShadow: boolean }) {
       }
     }
   }, [pathname, searchParams]);
+  const getLink = (hash: string) => {
+    return pathname === "/" ? hash : `/${hash}`;
+  };
   return (
     <div>
       <nav
@@ -36,7 +39,7 @@ export function Navbar({ hasShadow }: { hasShadow: boolean }) {
             <ul className="flex flex-row items-center space-x-8 font-medium">
               <li>
                 <a
-                  href="#about"
+                  href={getLink("#about")}
                   className="block py-2 px-3 rounded-sm md:bg-transparent md:bg-opacity-50"
                 >
                   About Us
@@ -44,7 +47,7 @@ export function Navbar({ hasShadow }: { hasShadow: boolean }) {
               </li>
               <li>
                 <a
-                  href="#location"
+                  href={getLink("#location")}
                   className="block py-2 px-3 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:bg-opacity-50  md:p-0  md:dark:hover:bg-transparent"
                 >
                   Location
@@ -72,7 +75,7 @@ export function Navbar({ hasShadow }: { hasShadow: boolean }) {
             <ul className="flex flex-row items-center space-x-8 font-medium">
               <li>
                 <Link
-                  href="/store"
+                  href="/directory"
                   className="block py-2 px-3 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:bg-opacity-50 md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
                 >
                   Directory
@@ -80,7 +83,7 @@ export function Navbar({ hasShadow }: { hasShadow: boolean }) {
               </li>
               <li>
                 <a
-                  href="#contact"
+                  href={getLink("#contact")}
                   className="block py-2 px-3 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:bg-opacity-50 md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
                 >
                   Contact
