@@ -15,7 +15,9 @@ export default function Amenities() {
     <section className="py-6">
       <div className="text-center">
         {/* Title */}
-        <h2 className="text-lg font-semibold text-gray-800 mb-10">Amenities</h2>
+        <h2 className="text-lg font-semibold text-[#00032E] mb-10">
+          Amenities
+        </h2>
 
         {/* Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-8 justify-items-center">
@@ -32,7 +34,7 @@ export default function Amenities() {
                 />
               </div>
               {/* Label */}
-              <p className="mt-3 text-sm font-medium text-gray-800">
+              <p className="mt-3 text-sm font-medium text-[#00032E]">
                 {amenity.name}
               </p>
             </div>

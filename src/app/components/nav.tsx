@@ -33,7 +33,7 @@ export function Navbar({ hasShadow }: { hasShadow: boolean }) {
           {/* Left Menu */}
           <div
             className={`hidden md:flex ${
-              hasShadow ? "text-black" : "text-white"
+              hasShadow ? "text-[#00032E]" : "text-white"
             }`}
           >
             <ul className="flex flex-row items-center space-x-8 font-medium">

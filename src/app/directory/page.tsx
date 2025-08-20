@@ -56,12 +56,11 @@ export default function StoreDirectoryPage() {
         <section
           id="directory"
           ref={searchDirectoryRef}
-          className="h-screen pt-12 flex flex-col items-center justify-center px-4 sm:px-6"
+          className="h-screen pt-12 bg-[#E7E9EB] flex flex-col items-center justify-center px-4 sm:px-6"
         >
           <SearchDirectory />
           <Amenities />
         </section>
-        {/* <Footer /> */}
       </main>
     </div>
   );

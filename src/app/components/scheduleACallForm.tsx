@@ -15,16 +15,19 @@ export default function ScheduleCallCard() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); // stop form reload
+
     try {
-      const response = await fetch("/api/contact/scheduledCalls", {
+      const response = await fetch("/api/scheduledCalls", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        // Sending formData directly
         body: JSON.stringify(formData),
       });
+
+      console.log("Form data submitted:", formData);
 
       if (response.ok) {
         alert("Sent successfully!");
@@ -35,7 +38,10 @@ export default function ScheduleCallCard() {
           date: "",
         });
       } else {
-        alert("Failed to send message.");
+        const errorData = await response.json(); // get error msg from API
+        alert(
+          `Failed to send message: ${errorData.message || "Unknown error"}`
+        );
       }
     } catch (error) {
       console.error("Submission error:", error);
@@ -45,8 +51,6 @@ export default function ScheduleCallCard() {
 
   return (
     <div className="w-full flex justify-center">
-      {/* <div className="relative flex items-center justify-between bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl shadow-lg px-6 py-4 max-w-6xl mx-auto"> */}
-      {/* Company */}
       <form
         action=""
         onSubmit={handleSubmit}
@@ -59,7 +63,7 @@ export default function ScheduleCallCard() {
             name="company"
             value={formData.company}
             onChange={handleChange}
-            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB]"
+            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB] text-center"
           />
         </div>
 
@@ -73,7 +77,7 @@ export default function ScheduleCallCard() {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB]"
+            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB] text-center"
           />
         </div>
 
@@ -87,13 +91,11 @@ export default function ScheduleCallCard() {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB]"
+            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB] text-center"
           />
         </div>
 
         <span className="hidden md:block text-[#E7E9EB] mr-4">|</span>
-
-        {/* Call Date */}
         <div className="flex flex-col mx-4">
           <label className="text-sm text-[#E7E9EB]">Call Date</label>
           <input
@@ -101,18 +103,16 @@ export default function ScheduleCallCard() {
             name="date"
             value={formData.date}
             onChange={handleChange}
-            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB]"
+            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB] text-center"
           />
         </div>
-
-        {/* Button */}
         <button
           type="submit"
-          className="bg-[#D6A829] hover:bg-yellow-500 text-black font-semibold px-5 py-2 rounded-lg shadow-md transition"
+          className="bg-[#D6A829] text-[#00032E] font-semibold px-5 py-2 rounded-lg shadow-md transition"
         >
           Schedule a Call
         </button>
-      </form>{" "}
+      </form>
     </div>
   );
 }

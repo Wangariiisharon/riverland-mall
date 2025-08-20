@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { getNearbyPlaces } from "../api/contact/nearbyPlaces";
+import { getNearbyPlaces } from "../../lib/nearbyPlaces/route";
 import { NearbyPlace } from "../types/nearby_places";
 
 export default function NearbyCarousel() {

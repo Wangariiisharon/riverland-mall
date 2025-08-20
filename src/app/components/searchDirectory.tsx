@@ -26,43 +26,52 @@ export default function SearchDirectory() {
   );
 
   return (
-    <div className="">
-      <div className="bg-[#172D44]/6 p-2">
-        <div className="flex items-center gap-0">
+    <div>
+      <div className="p-2 flex flex-row">
+        <div className="flex gap-0 bg-[#172D44]/5 rounded-lg overflow-hidden">
           {/* Search Input */}
-          <div className="relative flex-1 ">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+          <div className="relative flex-1 text-[#00032E]/50 py-1.5">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#172D44]/50 w-4 h-4" />
             <input
               type="text"
               placeholder="Company Name / Business Name"
-              className="w-full pl-10 pr-4 py-2.5  rounded-l-lg focus:outline-none focus:ring-0 text-sm"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-10 pr-4 py-2.5 focus:outline-none focus:ring-0 text-sm bg-transparent"
             />
           </div>
-
+          {/* Category Divider */}
+          <div className="flex items-center">
+            <div className="h-5 w-px bg-[#00032E]/20 mx-2"></div>
+          </div>
           {/* Category Input */}
-          <div className="flex-1 border-l-1 border-gray-400 ">
+          <div className="flex-1 text-[#172D44]/50 py-1.5">
             <input
               type="text"
               placeholder="Category"
-              className="w-full px-4 py-2.5  focus:outline-none focus:ring-0 text-sm"
+              className="w-full px-4 py-2.5 focus:outline-none focus:ring-0 text-sm bg-transparent"
             />
+          </div>
+          {/* Category Divider */}
+          <div className="flex items-center">
+            <div className="h-5 w-px bg-[#00032E]/20 mx-2"></div>
           </div>
 
           {/* Sort By Input */}
-          <div className="flex-1 border-l-1 border-gray-400">
+          <div className="flex-1 text-[#172D44]/50 py-1.5">
             <input
               type="text"
               placeholder="Sort By"
-              className="w-full px-4 py-2.5  focus:outline-none focus:ring-0  text-sm"
+              className="w-full px-4 py-2.5 focus:outline-none focus:ring-0 text-sm bg-transparent"
             />
           </div>
-
-          {/* Filter Button */}
-          <button className="flex items-center gap-2 px-4 py-2.5 bg-yellow-400 hover:bg-yellow-500 text-black font-medium rounded-r-lg border border-yellow-400 text-sm whitespace-nowrap">
-            <span>Filter by</span>
-            <Filter className="w-4 h-4" />
-          </button>
         </div>
+
+        {/* Filter Button */}
+        <button className="flex items-center ml-6 gap-2 px-4 bg-[#D6A829] text-[#00032E] font-medium rounded-lg text-sm whitespace-nowrap">
+          <span>Filter by</span>
+          <Filter className="w-4 h-4" />
+        </button>
       </div>
 
       {/* Business List */}
@@ -70,7 +79,7 @@ export default function SearchDirectory() {
         {filtered.map((biz) => (
           <div
             key={biz.id}
-            className="flex items-center gap-4 bg-gray-100 border border-gray-200 rounded-lg p-4"
+            className="flex items-center gap-4 border-2 border-[#00032E]/5 rounded-lg p-4"
           >
             {/* Logo Placeholder */}
             <div className="w-14 h-14 bg-gray-200 rounded-md flex items-center justify-center">

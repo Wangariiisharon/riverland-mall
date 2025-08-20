@@ -60,15 +60,15 @@ export default function HomePage() {
             <div className="md:ml-10">
               <div className="flex flex-row mb-4">
                 <div className="border-l-1 text-sm border-black"></div>
-                <p className="text-sm font-400 tracking-wider text-gray-500 uppercase ml-2">
+                <p className="text-sm font-400 tracking-wider text-[#00032E]/50 uppercase ml-2">
                   About Riverland
                 </p>
               </div>
 
-              <h2 className="text-3xl font-bold text-gray-900 mb-4 leading-snug">
+              <h2 className="text-3xl font-bold text-[#00032E] mb-4 leading-snug">
                 Luxury with Purpose, <br /> Community at Heart
               </h2>
-              <p className="text-gray-700 mb-4 leading-relaxed">
+              <p className="text-[#00032E] mb-4 leading-relaxed">
                 Riverland Mall is a modern lifestyle destination <br />
                 designed to bring together retail, dining, and <br />{" "}
                 entertainment under one roof. Built with <br /> sustainability
@@ -77,12 +77,12 @@ export default function HomePage() {
                 design, creating a space that is both functional and <br />
                 inspiring.
               </p>
-              <p className="text-gray-700 mb-6 leading-relaxed">
+              <p className="text-[#00032E] mb-6 leading-relaxed">
                 More than a shopping center, Riverland Mall is a <br /> vibrant
                 community hub where businesses thrive, <br /> families gather,
                 and memorable experiences are <br /> made.
               </p>
-              <button className="bg-[#D6A829] hover:bg-yellow-600 text-white font-semibold py-2 px-6 rounded-md transition-colors">
+              <button className="bg-[#D6A829] text-[#00032E] font-semibold py-2 px-6 rounded-md transition-colors">
                 Explore Now
               </button>
             </div>
@@ -100,20 +100,20 @@ export default function HomePage() {
             <div className="md:ml-10">
               <div className="flex flex-row mb-4">
                 <div className="border-l-1 text-sm border-black"></div>
-                <p className="text-sm font-400 tracking-wider text-gray-500 uppercase ml-2">
+                <p className="text-sm font-400 tracking-wider text-[#00032E]/50 uppercase ml-2">
                   Location
                 </p>
               </div>
 
-              <h2 className="text-3xl font-bold text-gray-900 mb-4 leading-snug">
+              <h2 className="text-3xl font-bold text-[#00032E] mb-4 leading-snug">
                 Seamlessly Connected, Perfectly Positioned
               </h2>
-              <p className="text-gray-700 mb-4 leading-relaxed">
+              <p className="text-[#00032E] mb-4 leading-relaxed">
                 Riverland Mall is located in the highly connected <br />
                 neighborhood of Runda, making it easy to access <br /> from key
                 residential and business areas.
               </p>
-              <p className="text-gray-700 mb-6 leading-relaxed">
+              <p className="text-[#00032E] mb-6 leading-relaxed">
                 Its central position ensures steady visitor flow from <br />
                 families, professionals, and students who frequent <br /> the
                 area for shopping, dining, and leisure. With <br /> convenient
@@ -140,7 +140,7 @@ export default function HomePage() {
 
           {/* Nearby section */}
           <div className="mt-30 w-full max-w-6xl">
-            <h1 className="text-2xl text-pretty font-medium text-gray-900 mb-4 text-center">
+            <h1 className="text-2xl text-pretty font-medium text-[#00032E] mb-4 text-center">
               Shop the Riverland Experience
             </h1>
             <NearbyCarousel />
