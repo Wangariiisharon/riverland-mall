@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     console.error("Error submitting form:", error);
     // Return an error
     return NextResponse.json(
-      { message: "Error submitting form" },
+      { message: "Error submitting form please" },
       { status: 500 }
     );
   }
