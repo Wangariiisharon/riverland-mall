@@ -56,8 +56,6 @@ export default function NearbyCarousel() {
     return <p className="text-center py-10">Loading nearby places...</p>;
   }
 
-  const maxIndex = Math.max(0, locations.length - itemsPerView);
-
   return (
     <div className="mt-20 relative">
       <div className="w-full max-w-6xl mx-auto px-8">
@@ -69,7 +67,7 @@ export default function NearbyCarousel() {
               transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
             }}
           >
-            {locations.map((location, index) => (
+            {locations.map((location) => (
               <div
                 key={location._id}
                 className="flex-shrink-0"
