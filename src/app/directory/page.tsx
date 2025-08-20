@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
 import SearchDirectory from "../components/searchDirectory";
-import Amenities from "../components/amenities";
+// import Amenities from "../components/amenities";
 
 import { Mouse } from "lucide-react";
 export default function StoreDirectoryPage() {
@@ -59,7 +59,7 @@ export default function StoreDirectoryPage() {
           className="h-screen pt-12 flex flex-col items-center justify-center px-4 sm:px-6"
         >
           <SearchDirectory />
-          <Amenities />
+          {/* <Amenities /> */}
         </section>
         {/* <Footer /> */}
       </main>
