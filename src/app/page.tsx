@@ -2,6 +2,7 @@
 import NearbyCarousel from "./components/nearby_carousel";
 import LandingPage from "./home/page";
 import { useRef, useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function HomePage() {
   const aboutRef = useRef<HTMLDivElement | null>(null);
@@ -47,15 +48,14 @@ export default function HomePage() {
           className="pt-30 bg-[#E7E9EB] flex flex-col items-center justify-center px-4 sm:px-6"
         >
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center w-full">
-            <div className="w-full h-[300px] md:w-[600px] md:h-[600px] rounded-[20px] bg-gray-500 overflow-hidden">
-              {/* <Image
-        src="/about-image.jpg"
-        alt="About Riverland Mall"
-        width={600}
-        height={600}
-        className="w-full h-full object-cover"
-        sizes="(max-width: 768px) 100vw, 600px"
-      /> */}
+            <div className="w-full h-[300px] md:w-[600px] md:h-[600px] rounded-[20px] overflow-hidden">
+              <Image
+                src="/img.png"
+                alt="About Riverland Mall"
+                width={600}
+                height={600}
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="md:ml-10">
               <div className="flex flex-row mb-4">

@@ -16,6 +16,9 @@ const sampleData: Business[] = [
   { id: "3", name: "Lorem ipsum dolor sit amet", code: "#03-045" },
   { id: "4", name: "Lorem ipsum dolor sit amet", code: "#G-012" },
   { id: "5", name: "Lorem ipsum dolor sit amet", code: "#G-012" },
+  { id: "6", name: "Lorem ipsum dolor sit amet", code: "#G-012" },
+  { id: "7", name: "Lorem ipsum dolor sit amet", code: "#G-012" },
+  { id: "8", name: "Lorem ipsum dolor sit amet", code: "#G-012" },
 ];
 
 export default function SearchDirectory() {
@@ -75,11 +78,12 @@ export default function SearchDirectory() {
       </div>
 
       {/* Business List */}
-      <div className="space-y-3 pt-12">
+      {/* Business List */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-12">
         {filtered.map((biz) => (
           <div
             key={biz.id}
-            className="flex items-center gap-4 border-2 border-[#00032E]/5 rounded-lg p-4"
+            className="flex items-center gap-6 border-2 border-[#00032E]/5 rounded-lg p-6 w-full"
           >
             {/* Logo Placeholder */}
             <div className="w-14 h-14 bg-gray-200 rounded-md flex items-center justify-center">
