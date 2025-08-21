@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
-import SearchDirectory from "../components/searchDirectory";
-import Amenities from "../components/amenities";
+import SearchDirectory from "../../components/searchDirectory";
+import Amenities from "../../components/amenities";
 
 import { Mouse } from "lucide-react";
 export default function StoreDirectoryPage() {

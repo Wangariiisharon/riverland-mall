@@ -1,5 +1,5 @@
 import { client } from "@/lib/sanity";
-import type { NearbyPlace } from "../../app/types/nearby_places";
+import type { NearbyPlace } from "../../types/nearby_places";
 
 export async function getNearbyPlaces(): Promise<NearbyPlace[]> {
   return client.fetch<NearbyPlace[]>(`

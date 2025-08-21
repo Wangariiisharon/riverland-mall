@@ -1,5 +1,5 @@
 import { client } from "@/lib/sanity";
-import type { Stores } from "../../app/types/stores";
+import type { Stores } from "../../types/stores";
 
 export async function getStores(): Promise<Stores[]> {
   return client.fetch<Stores[]>(`

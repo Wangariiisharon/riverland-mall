@@ -1,5 +1,5 @@
 "use client";
-import ScheduleCallCard from "../components/scheduleACallForm";
+import ScheduleCallCard from "../../components/scheduleACallForm";
 import { Mouse } from "lucide-react";
 
 export default function LandingPage() {

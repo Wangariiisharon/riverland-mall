@@ -1,6 +1,6 @@
 "use client";
-import { Navbar } from "../app/components/nav";
-import Footer from "../app/components/footer";
+import { Navbar } from "../components/nav";
+import Footer from "../components/footer";
 import { useEffect, useState, Suspense } from "react";
 import "./globals.css";
 import { Source_Sans_3 } from "next/font/google";

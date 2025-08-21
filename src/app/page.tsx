@@ -1,5 +1,5 @@
 "use client";
-import NearbyCarousel from "./components/nearby_carousel";
+import NearbyCarousel from "../components/nearby_carousel";
 import LandingPage from "./home/page";
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";

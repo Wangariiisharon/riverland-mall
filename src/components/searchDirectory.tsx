@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, Filter } from "lucide-react";
+import { Search, Filter, ChevronDown } from "lucide-react";
 import { Stores } from "../types/stores";
 import { getStores } from "@/lib/getStores/route";
 import Image from "next/image";
@@ -65,6 +65,9 @@ export default function SearchDirectory() {
               placeholder="Sort By"
               className="w-full px-10 py-2.5 focus:outline-none focus:ring-0 text-sm bg-transparent"
             />
+            <span>
+              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#172D44]/50 w-4 h-4" />
+            </span>
           </div>
         </div>
 

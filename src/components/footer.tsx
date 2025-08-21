@@ -32,60 +32,6 @@ export default function Footer() {
     <footer className="w-full bg-[#172D44]/6 shadow text-[#00032E] pt-12">
       <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-4">
         {/* Store Categories */}
-        <div className="text-[#00032E]">
-          <h4 className="font-semibold mb-4 text-[#00032E]/50">
-            Store Categories
-          </h4>
-          <ul className="space-y-2">
-            <li>
-              <a href="#" className="hover:text-gray-900">
-                Shopping
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-gray-900">
-                Dining
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-gray-900">
-                Fashion & Lifestyle
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-gray-900">
-                Services
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        {/* About */}
-        <div className="text-[#00032E]">
-          <h4 className="font-semibold mb-4 text-[#00032E]/50">About</h4>
-          <ul className="space-y-2">
-            <li>
-              <a href="#" className="hover:text-gray-900">
-                About Riverland
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-gray-900">
-                Campaigns
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-gray-900">
-                Careers
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-gray-900">
-                Expos
-              </a>
-            </li>
-          </ul>
-        </div>
 
         {/* Contact Us */}
         <div className="text-[#00032E]">
@@ -122,7 +68,7 @@ export default function Footer() {
         </div>
 
         {/* Logo + Newsletter */}
-        <div className="flex flex-col items-start md:items-end">
+        <div className="flex flex-col  md:justify-end">
           {/* Logo */}
           <div className="mb-4 flex-shrink-0">
             <Image src="/darkLogo.svg" width={174} height={36} alt="Logo" />
@@ -160,14 +106,6 @@ export default function Footer() {
             reproduction of part or all of the contents and images in any form
             is prohibited.
           </p>
-          <div className="flex space-x-4 mt-2 md:mt-0">
-            <a href="#" className="hover:text-gray-900">
-              Terms of Use
-            </a>
-            <a href="#" className="hover:text-gray-900">
-              Privacy Policy
-            </a>
-          </div>
         </div>
       </div>
     </footer>
