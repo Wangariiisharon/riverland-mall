@@ -1,36 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search, Filter } from "lucide-react";
-
-interface Business {
-  id: string;
-  name: string;
-  code: string;
-  logo?: string;
-}
-
-const sampleData: Business[] = [
-  { id: "1", name: "Lorem ipsum dolor sit amet", code: "#1-390" },
-  { id: "2", name: "Lorem ipsum dolor sit amet", code: "#B1-010" },
-  { id: "3", name: "Lorem ipsum dolor sit amet", code: "#03-045" },
-  { id: "4", name: "Lorem ipsum dolor sit amet", code: "#G-012" },
-  { id: "5", name: "Lorem ipsum dolor sit amet", code: "#G-012" },
-  { id: "6", name: "Lorem ipsum dolor sit amet", code: "#G-012" },
-  { id: "7", name: "Lorem ipsum dolor sit amet", code: "#G-012" },
-  { id: "8", name: "Lorem ipsum dolor sit amet", code: "#G-012" },
-];
+import { Stores } from "../types/stores";
+import { getStores } from "@/lib/getStores/route";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function SearchDirectory() {
   const [search, setSearch] = useState("");
+  const [stores, setStores] = useState<Stores[]>([]);
 
-  const filtered = sampleData.filter((b) =>
-    b.name.toLowerCase().includes(search.toLowerCase())
+  // Fetch from Sanity
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getStores();
+      setStores(data);
+
+      console.log("Fetched stores:", data);
+    }
+    fetchData();
+  }, []);
+
+  const filtered = stores.filter((b) =>
+    b.title.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div>
-      <div className="p-2 flex flex-row">
+      <div className="flex flex-row w-full">
         <div className="flex gap-0 bg-[#172D44]/5 rounded-lg overflow-hidden">
           {/* Search Input */}
           <div className="relative flex-1 text-[#00032E]/50 py-1.5">
@@ -40,7 +38,7 @@ export default function SearchDirectory() {
               placeholder="Company Name / Business Name"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 focus:outline-none focus:ring-0 text-sm bg-transparent"
+              className="w-full pl-16 pr-4 py-2.5 focus:outline-none focus:ring-0 text-sm bg-transparent"
             />
           </div>
           {/* Category Divider */}
@@ -48,11 +46,11 @@ export default function SearchDirectory() {
             <div className="h-5 w-px bg-[#00032E]/20 mx-2"></div>
           </div>
           {/* Category Input */}
-          <div className="flex-1 text-[#172D44]/50 py-1.5">
+          <div className="flex-1 text-[#172D44]/50 py-1.5 px-5">
             <input
               type="text"
               placeholder="Category"
-              className="w-full px-4 py-2.5 focus:outline-none focus:ring-0 text-sm bg-transparent"
+              className="w-full px-10 py-2.5 focus:outline-none focus:ring-0 text-sm bg-transparent"
             />
           </div>
           {/* Category Divider */}
@@ -61,11 +59,11 @@ export default function SearchDirectory() {
           </div>
 
           {/* Sort By Input */}
-          <div className="flex-1 text-[#172D44]/50 py-1.5">
+          <div className="flex-1 text-[#172D44]/50 py-1.5 px-5">
             <input
               type="text"
               placeholder="Sort By"
-              className="w-full px-4 py-2.5 focus:outline-none focus:ring-0 text-sm bg-transparent"
+              className="w-full px-10 py-2.5 focus:outline-none focus:ring-0 text-sm bg-transparent"
             />
           </div>
         </div>
@@ -77,27 +75,31 @@ export default function SearchDirectory() {
         </button>
       </div>
 
-      {/* Business List */}
-      {/* Business List */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-12">
-        {filtered.map((biz) => (
-          <div
-            key={biz.id}
-            className="flex items-center gap-6 border-2 border-[#00032E]/5 rounded-lg p-6 w-full"
-          >
-            {/* Logo Placeholder */}
-            <div className="w-14 h-14 bg-gray-200 rounded-md flex items-center justify-center">
-              <div className="w-10 h-10 bg-gray-300 rounded" />
+        {filtered.map((biz, index) => (
+          <Link key={index} href={`/directory/${biz.slug}`}>
+            <div className="flex items-center gap-6 border-2 border-[#00032E]/5 rounded-lg p-6 w-full hover:shadow-md transition cursor-pointer">
+              {biz.logo ? (
+                <Image
+                  src={biz.logo}
+                  alt={biz.title}
+                  width={60}
+                  height={60}
+                  className="rounded-md flex items-center justify-center"
+                />
+              ) : (
+                <div className="w-14 h-14 bg-gray-200 rounded-md flex items-center justify-center">
+                  <div className="w-10 h-10 bg-gray-300 rounded" />
+                </div>
+              )}
+              <div>
+                <h3 className="text-sm font-semibold text-gray-900">
+                  {biz.title}
+                </h3>
+                <p className="text-xs text-gray-500">{biz.storeNumber}</p>
+              </div>
             </div>
-
-            {/* Business Info */}
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900">
-                {biz.name}
-              </h3>
-              <p className="text-xs text-gray-500">{biz.code}</p>
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

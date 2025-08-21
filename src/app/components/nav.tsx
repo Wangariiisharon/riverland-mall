@@ -27,12 +27,14 @@ export function Navbar({ hasShadow }: { hasShadow: boolean }) {
   return (
     <div>
       <nav
-        className={`fixed w-full z-20 top-0 start-0 transition-shadow duration-300 ${hasShadow ? "shadow-md" : ""} `}
+        className={`fixed w-full z-20 top-0 start-0 transition-colors transition-shadow duration-300 ${
+          hasShadow ? "shadow-md bg-[#E7E9EB]" : "bg-transparent"
+        }`}
       >
         <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
           {/* Left Menu */}
           <div
-            className={`hidden md:flex ${
+            className={`hidden md:flex transition-colors duration-300 ${
               hasShadow ? "text-[#00032E]" : "text-white"
             }`}
           >
@@ -57,7 +59,7 @@ export function Navbar({ hasShadow }: { hasShadow: boolean }) {
           </div>
 
           {/* Center Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 transition-all duration-300">
             {hasShadow ? (
               <Image src="/darkLogo.svg" width={174} height={36} alt="Logo" />
             ) : (
@@ -67,7 +69,7 @@ export function Navbar({ hasShadow }: { hasShadow: boolean }) {
 
           {/* Right Menu */}
           <div
-            className={`hidden md:flex ${
+            className={`hidden md:flex transition-colors duration-300 ${
               hasShadow ? "text-black" : "text-white"
             }`}
           >

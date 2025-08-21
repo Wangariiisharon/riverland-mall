@@ -11,6 +11,21 @@ export const storeType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'phoneNumber',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'storeNumber',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'openHours',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'slug',
       type: 'slug',
       options: {source: 'title'},
@@ -30,6 +45,12 @@ export const storeType = defineType({
       name: 'details',
       type: 'array',
       of: [{type: 'block'}],
+    }),
+    defineField({
+      name: 'gallery',
+      type: 'array',
+      of: [{type: 'image'}],
+      validation: (Rule: any) => Rule.max(5).error('You can only upload up to 5 images.'),
     }),
   ],
 })

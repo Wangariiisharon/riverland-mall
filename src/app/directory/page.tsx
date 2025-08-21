@@ -56,10 +56,13 @@ export default function StoreDirectoryPage() {
         <section
           id="directory"
           ref={searchDirectoryRef}
-          className="h-screen pt-12 bg-[#E7E9EB] flex flex-col items-center justify-center px-4 sm:px-6"
+          // className="h-screen w-full pt-12 bg-[#E7E9EB] flex flex-col  px-4 sm:px-6 "
+          className="h-screen w-full bg-[#E7E9EB]"
         >
-          <SearchDirectory />
-          <Amenities />
+          <div className="max-w-screen-xl flex flex flex-col justify-cente mx-auto pt-14 px-4">
+            <SearchDirectory />
+            <Amenities />
+          </div>
         </section>
       </main>
     </div>
