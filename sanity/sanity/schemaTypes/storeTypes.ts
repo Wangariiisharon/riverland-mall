@@ -52,5 +52,25 @@ export const storeType = defineType({
       of: [{type: 'image'}],
       validation: (Rule: any) => Rule.max(5).error('You can only upload up to 5 images.'),
     }),
+    // 👇 Example select field
+    defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Fine Dining', value: 'finedining'},
+          {title: 'Health & Wellness', value: 'healthwellness'},
+          {title: 'Shopping', value: 'shopping'},
+          {title: 'Entertainment', value: 'entertainment'},
+          {title: 'Outdoor Space', value: 'outdoor'},
+          {title: 'Petrol Station', value: 'petrolstation'},
+          {title: 'Office Space', value: 'officespace'},
+          {title: 'Gym', value: 'gym'},
+        ],
+        layout: 'dropdown', // or 'radio'
+      },
+      validation: (rule) => rule.required(),
+    }),
   ],
 })

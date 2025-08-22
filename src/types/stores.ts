@@ -14,4 +14,5 @@ export interface Stores {
     _type: string;
     url: string;
   }[];
+  category: string;
 }

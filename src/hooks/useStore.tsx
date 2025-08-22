@@ -37,7 +37,8 @@ function useStore({ slug }: UseStoreProps): UseStoreReturn {
           openHours,
           "logo": logo.asset->url,
           details,
-          gallery[]{ "url": asset->url }
+          gallery[]{ "url": asset->url },
+          category,
         }`,
         { slug }
       );

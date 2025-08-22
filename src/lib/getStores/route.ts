@@ -16,7 +16,8 @@ export async function getStores(): Promise<Stores[]> {
         gallery[]{
           _type,
           "url": asset->url
-        }
+        },
+        category
       }
     `);
 }
