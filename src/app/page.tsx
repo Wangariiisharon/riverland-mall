@@ -126,15 +126,13 @@ export default function HomePage() {
 
             {/* Image container - Responsive sizing */}
             <div className="w-full h-[300px] md:w-[600px] md:h-[600px] rounded-[20px] bg-gray-500 overflow-hidden">
-              {/* For actual image, use something like: */}
-              {/* <Image
-        src="/location-image.jpg"
-        alt="Riverland Mall Location"
-        width={600}
-        height={600}
-        className="w-full h-full object-cover"
-        sizes="(max-width: 768px) 100vw, 600px"
-      /> */}
+              <Image
+                src="/location.png"
+                alt="Riverland Mall Location"
+                width={600}
+                height={600}
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
 

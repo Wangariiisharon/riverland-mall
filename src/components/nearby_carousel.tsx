@@ -8,7 +8,7 @@ import { NearbyPlace } from "../types/nearby_places";
 export default function NearbyCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [locations, setLocations] = useState<NearbyPlace[]>([]);
-  const [itemsPerView, setItemsPerView] = useState(4); // Default to 4 items visible
+  const [itemsPerView, setItemsPerView] = useState(4);
 
   // Fetch from Sanity
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function NearbyCarousel() {
     fetchData();
   }, []);
 
-  // Handle responsive items per view
+  // Responsive items per view
   useEffect(() => {
     const updateItemsPerView = () => {
       if (window.innerWidth < 640) {
@@ -29,7 +29,7 @@ export default function NearbyCarousel() {
       } else if (window.innerWidth < 1024) {
         setItemsPerView(4);
       } else {
-        setItemsPerView(5); // Show 5 items on desktop to match the image
+        setItemsPerView(5);
       }
     };
 
@@ -39,17 +39,11 @@ export default function NearbyCarousel() {
   }, []);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => {
-      const maxIndex = Math.max(0, locations.length - itemsPerView);
-      return prev >= maxIndex ? 0 : prev + 1;
-    });
+    setCurrentIndex((prev) => (prev + 1) % locations.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => {
-      const maxIndex = Math.max(0, locations.length - itemsPerView);
-      return prev <= 0 ? maxIndex : prev - 1;
-    });
+    setCurrentIndex((prev) => (prev === 0 ? locations.length - 1 : prev - 1));
   };
 
   if (!locations.length) {
@@ -64,40 +58,60 @@ export default function NearbyCarousel() {
           <div
             className="flex transition-transform duration-500 ease-in-out gap-6"
             style={{
-              transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
+              transform: `translateX(-${(currentIndex * 100) / itemsPerView}%)`,
             }}
           >
-            {locations.map((location) => (
-              <div
-                key={location._id}
-                className="flex-shrink-0"
-                style={{ width: `${100 / itemsPerView}%` }}
-              >
-                <div className="hover:shadow-lg transition-shadow duration-300 p-4">
-                  {/* Image Container with consistent aspect ratio */}
-                  <div className="w-full h-48 mb-4 bg-gray-100 rounded-lg overflow-hidden">
-                    {location.logoUrl ? (
-                      <Image
-                        src={location.logoUrl}
-                        alt={location.title}
-                        width={200}
-                        height={240}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                        <span className="text-gray-500 text-sm">No Image</span>
-                      </div>
-                    )}
-                  </div>
+            {locations.map((location, idx) => {
+              const middleIndex = Math.floor(itemsPerView / 2);
+              const position =
+                (idx - currentIndex + locations.length) % locations.length;
 
-                  {/* Location Title */}
-                  <h3 className="text-sm font-medium text-gray-900 text-center line-clamp-2">
-                    {location.title}
-                  </h3>
+              let styleClass = "scale-75 blur-sm opacity-50"; // default (far away)
+
+              if (position === middleIndex) {
+                // Center item
+                styleClass = "scale-110 blur-0 opacity-100 z-10";
+              } else if (
+                position === middleIndex - 1 ||
+                position === middleIndex + 1
+              ) {
+                // Immediate left/right neighbors
+                styleClass = "scale-95 blur-[1px] opacity-85 z-5";
+              }
+
+              return (
+                <div
+                  key={location._id + idx}
+                  className="flex-shrink-0 transition-all duration-500 ease-in-out"
+                  style={{ width: `${100 / itemsPerView}%` }}
+                >
+                  <div
+                    className={`p-4 rounded-lg transition-all duration-500 ${styleClass}`}
+                  >
+                    <div className="w-full h-48 mb-4 bg-gray-100 rounded-lg overflow-hidden">
+                      {location.logoUrl ? (
+                        <Image
+                          src={location.logoUrl}
+                          alt={location.title}
+                          width={200}
+                          height={240}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                          <span className="text-gray-500 text-sm">
+                            No Image
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <h3 className="text-sm font-medium text-gray-900 text-center line-clamp-2">
+                      {location.title}
+                    </h3>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 

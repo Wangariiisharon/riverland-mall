@@ -28,14 +28,13 @@ export default function Footer() {
       alert("An error occurred. Please try again.");
     }
   };
+
   return (
     <footer className="w-full bg-[#172D44]/6 shadow text-[#00032E] pt-12">
-      <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-4">
-        {/* Store Categories */}
-
-        {/* Contact Us */}
-        <div className="text-[#00032E]">
-          <h4 className="font-semibold mb-4 text-[#00032E]/50 ">Contact Us</h4>
+      <div className="max-w-7xl mx-auto px-4 py-12 flex flex-col md:flex-row justify-between items-start gap-8">
+        {/* Contact Us - Left */}
+        <div className="text-[#00032E] w-full md:w-1/2">
+          <h4 className="font-semibold mb-4 text-[#00032E]/50">Contact Us</h4>
           <p className="mb-2">
             Mobile:{" "}
             <a href="tel:+254115771888" className="hover:text-gray-900">
@@ -51,7 +50,7 @@ export default function Footer() {
               info@riverland.co.ke
             </a>
           </p>
-          <div className="flex space-x-4 text-[D6A829]">
+          <div className="flex space-x-4 text-[#D6A829]">
             <a href="#">
               <i className="fab fa-instagram text-xl"></i>
             </a>
@@ -67,10 +66,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Logo + Newsletter */}
-        <div className="flex flex-col  md:justify-end">
+        {/* Logo + Newsletter - Right */}
+        <div className="flex flex-col items-start md:items-end w-full md:w-1/2">
           {/* Logo */}
-          <div className="mb-4 flex-shrink-0">
+          <div className="mb-4">
             <Image src="/darkLogo.svg" width={174} height={36} alt="Logo" />
           </div>
 
@@ -81,7 +80,7 @@ export default function Footer() {
 
           <form
             onSubmit={handleSubmit}
-            className="mt-6 flex  w-full max-w-lg  gap-x-2 px-2"
+            className="mt-6 flex w-full max-w-lg gap-x-2 px-2 md:justify-end"
           >
             <input
               type="email"

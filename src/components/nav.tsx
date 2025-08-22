@@ -59,13 +59,15 @@ export function Navbar({ hasShadow }: { hasShadow: boolean }) {
           </div>
 
           {/* Center Logo */}
-          <div className="flex-shrink-0 transition-all duration-300">
-            {hasShadow ? (
-              <Image src="/darkLogo.svg" width={174} height={36} alt="Logo" />
-            ) : (
-              <Image src="/logo.svg" width={174} height={36} alt="Logo" />
-            )}
-          </div>
+          <Link href="/">
+            <div className="flex-shrink-0 transition-all duration-300">
+              {hasShadow ? (
+                <Image src="/darkLogo.svg" width={174} height={36} alt="Logo" />
+              ) : (
+                <Image src="/logo.svg" width={174} height={36} alt="Logo" />
+              )}
+            </div>
+          </Link>
 
           {/* Right Menu */}
           <div
