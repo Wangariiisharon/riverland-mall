@@ -60,8 +60,8 @@ export default function StorePage({ params }: StorePageProps) {
                   <Image
                     src={selectedImage}
                     alt={store.title || "Store image"}
-                    width={800}
-                    height={600}
+                    width={480}
+                    height={520}
                     className="w-full h-full object-cover"
                   />
                 ) : (

@@ -13,29 +13,35 @@ const amenities = [
 
 export default function Amenities() {
   return (
-    <section className="py-6">
-      <div className="text-center">
+    <section className="py-10 px-4 sm:px-6 lg:px-12">
+      <div className="text-center max-w-6xl mx-auto">
         {/* Title */}
-        <h2 className="text-lg font-semibold text-[#00032E] mb-10">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-[#00032E] mb-10">
           Amenities
         </h2>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-6 justify-items-center">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6 sm:gap-8">
           {amenities.map((amenity) => (
-            <div key={amenity.id} className="flex flex-col items-center">
-              {/* Icon box */}
-              <div className=" rounded-lg flex items-center justify-center">
+            <div
+              key={amenity.id}
+              className="flex flex-col items-center text-center"
+            >
+              {/* Icon wrapper with responsive size */}
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24">
                 <Image
                   src={amenity.icon}
                   alt={amenity.name}
-                  width={88}
-                  height={92}
+                  fill
+                  sizes="(max-width: 640px) 64px,
+                         (max-width: 768px) 80px,
+                         (max-width: 1024px) 96px,
+                         120px"
                   className="object-contain"
                 />
               </div>
               {/* Label */}
-              <p className="mt-3 text-sm font-medium text-[#00032E]">
+              <p className="mt-3 text-xs sm:text-sm md:text-base font-medium text-[#00032E]">
                 {amenity.name}
               </p>
             </div>

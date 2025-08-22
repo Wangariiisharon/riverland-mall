@@ -6,7 +6,7 @@ export default function LandingPage() {
   return (
     <div className="h-screen w-full bg-[url(/hero-bg.jpg)] bg-cover bg-center flex flex-col justify-end relative">
       {/* Content wrapper */}
-      <footer className="flex flex-col items-center text-center space-y-6 pb-12">
+      <footer className="flex flex-col items-center text-center space-y-6 px-[40px] pb-12">
         {/* Heading */}
         <p className="tracking-wide text-2xl text-[#E7E9EB]">
           Looking to Rent a Space? Get in Touch!

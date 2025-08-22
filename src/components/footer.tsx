@@ -30,8 +30,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#172D44]/6 shadow text-[#00032E] pt-12">
-      <div className="max-w-7xl mx-auto px-4 py-12 flex flex-col md:flex-row justify-between items-start gap-8">
+    <footer className="w-full bg-[#172D44]/6 shadow text-[#00032E]">
+      <div className="max-w-7xl mx-auto px-[40px]  py-12 flex flex-col md:flex-row justify-between items-start gap-8">
         {/* Contact Us - Left */}
         <div className="text-[#00032E] w-full md:w-1/2">
           <h4 className="font-semibold mb-4 text-[#00032E]/50">Contact Us</h4>
@@ -98,7 +98,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-400">
+      {/* <div className="border-t border-gray-400">
         <div className="max-w-7xl mx-auto px-8 py-4 flex flex-col md:flex-row justify-between items-center text-sm text-[#00032E]">
           <p>
             © RIVERLAND 2025 • All rights reserved. Any redistribution or
@@ -106,7 +106,7 @@ export default function Footer() {
             is prohibited.
           </p>
         </div>
-      </div>
+      </div> */}
     </footer>
   );
 }

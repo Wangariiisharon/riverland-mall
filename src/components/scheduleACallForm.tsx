@@ -16,32 +16,21 @@ export default function ScheduleCallCard() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // stop form reload
+    e.preventDefault();
 
     try {
       const response = await fetch("/api/scheduledCalls", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      console.log("Form data submitted:", formData);
-
       if (response.ok) {
         alert("Sent successfully!");
-        setFormData({
-          company: "",
-          phone: "",
-          email: "",
-          date: "",
-        });
+        setFormData({ company: "", phone: "", email: "", date: "" });
       } else {
-        const errorData = await response.json(); // get error msg from API
-        alert(
-          `Failed to send message: ${errorData.message || "Unknown error"}`
-        );
+        const errorData = await response.json();
+        alert(`Failed: ${errorData.message || "Unknown error"}`);
       }
     } catch (error) {
       console.error("Submission error:", error);
@@ -50,65 +39,69 @@ export default function ScheduleCallCard() {
   };
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center px-4">
       <form
-        action=""
         onSubmit={handleSubmit}
-        className="relative flex items-center justify-between bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl shadow-lg px-6 py-4 max-w-6xl mx-auto"
+        className="relative flex flex-col md:flex-row items-center md:justify-between gap-6 bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl shadow-lg px-6 py-4 max-w-6xl mx-auto w-full"
       >
-        <div className="flex flex-col ml-4">
-          <label className="text-sm text-[#E7E9EB]">Business Name</label>
+        {/* Company */}
+        <div className="flex flex-col w-full md:w-auto">
+          <label className="text-sm text-[#E7E9EB] mb-1">Business Name</label>
           <input
             type="text"
             name="company"
             value={formData.company}
             onChange={handleChange}
-            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB] text-center"
+            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB] text-center md:border-none border-b border-white/40 focus:border-[#D6A829] transition w-full"
           />
         </div>
 
-        <span className="hidden md:block text-[#E7E9EB] mr-4">|</span>
+        <span className="hidden md:block text-[#E7E9EB]">|</span>
 
         {/* Phone */}
-        <div className="flex flex-col ml-4">
-          <label className="text-sm text-[#E7E9EB]">Phone Number</label>
+        <div className="flex flex-col w-full md:w-auto">
+          <label className="text-sm text-[#E7E9EB] mb-1">Phone Number</label>
           <input
             type="text"
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB] text-center"
+            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB]  text-center md:border-none  border-b border-white/40 focus:border-[#D6A829] transition w-full"
           />
         </div>
 
-        <span className="hidden md:block text-[#E7E9EB] mr-4">|</span>
+        <span className="hidden md:block text-[#E7E9EB]">|</span>
 
         {/* Email */}
-        <div className="flex flex-col ml-4">
-          <label className="text-sm text-[#E7E9EB]">Email Address</label>
+        <div className="flex flex-col w-full md:w-auto">
+          <label className="text-sm text-[#E7E9EB] mb-1">Email Address</label>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB] text-center"
+            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB] text-center md:border-none    border-b border-white/40 focus:border-[#D6A829] transition w-full"
           />
         </div>
 
-        <span className="hidden md:block text-[#E7E9EB] mr-4">|</span>
-        <div className="flex flex-col mx-4">
-          <label className="text-sm text-[#E7E9EB]">Call Date</label>
+        <span className="hidden md:block text-[#E7E9EB]">|</span>
+
+        {/* Date */}
+        <div className="flex flex-col w-full md:w-auto">
+          <label className="text-sm text-[#E7E9EB] mb-1">Call Date</label>
           <input
             type="date"
             name="date"
             value={formData.date}
             onChange={handleChange}
-            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB] text-center"
+            className="bg-transparent font-semibold focus:outline-none text-[#E7E9EB] text-center md:border-none border-b border-white/40 focus:border-[#D6A829] transition w-full"
           />
         </div>
+
+        {/* Submit */}
         <button
           type="submit"
-          className="bg-[#D6A829] text-[#00032E] font-semibold px-5 py-2 rounded-lg shadow-md transition"
+          className="bg-[#D6A829] text-[#00032E] font-semibold px-6 py-3 rounded-lg shadow-md transition w-full md:w-auto mt-2 md:mt-0"
         >
           Schedule a Call
         </button>

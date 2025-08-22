@@ -116,7 +116,7 @@ export default function NearbyCarousel() {
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex justify-center items-center mt-6 mb-4 space-x-4">
+        <div className="flex justify-center items-center pt-[23px] md:pt-[54px] mb-4 space-x-4">
           <button
             onClick={prevSlide}
             className="bg-[#E7E9EB] border border-[#00032E7A] p-3 rounded-md shadow-lg 
