@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ScheduleCallCard() {
   const [formData, setFormData] = useState({
@@ -9,6 +9,7 @@ export default function ScheduleCallCard() {
     email: "info@dominospizaa.com",
     date: "2025-08-15",
   });
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -28,15 +29,21 @@ export default function ScheduleCallCard() {
       if (response.ok) {
         alert("Sent successfully!");
         setFormData({ company: "", phone: "", email: "", date: "" });
+        setStatus("success");
       } else {
-        const errorData = await response.json();
-        alert(`Failed: ${errorData.message || "Unknown error"}`);
+        setStatus("error");
       }
     } catch (error) {
       console.error("Submission error:", error);
-      alert("An error occurred. Please try again.");
+      setStatus("error");
     }
   };
+  useEffect(() => {
+    if (status !== "idle") {
+      const timer = setTimeout(() => setStatus("idle"), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
 
   return (
     <div className="w-full flex justify-center px-4">
@@ -105,6 +112,15 @@ export default function ScheduleCallCard() {
         >
           Schedule a Call
         </button>
+
+        {status === "success" && (
+          <p className="text-green-500 mt-2 font-semibold">
+            We&apos;ll reach out to you
+          </p>
+        )}
+        {status === "error" && (
+          <p className="text-red-500 mt-2">Failed to send. Please try again.</p>
+        )}
       </form>
     </div>
   );
