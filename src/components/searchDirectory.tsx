@@ -128,7 +128,7 @@ export default function SearchDirectory() {
       </div>
 
       {/* Results */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-[20px] md:pt-[36px]">
         {sorted.map((biz, index) => (
           <Link key={index} href={`/directory/${biz.slug}`}>
             <div className="flex items-center gap-6 border-2 border-[#00032E]/5 rounded-lg p-6 w-full hover:shadow-md transition cursor-pointer">

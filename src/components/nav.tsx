@@ -31,11 +31,11 @@ export function Navbar({ hasShadow }: { hasShadow: boolean }) {
   return (
     <div>
       <nav
-        className={`fixed w-full z-20 top-0 start-0 px-[40px] md:px-[160px] transition-colors transition-shadow duration-300 ${
+        className={`fixed w-full z-20 top-0 start-0 px-[40px] md:px-[160px] transition-colors transition-shadow duration-300 py-[28px] ${
           hasShadow ? "shadow-md bg-[#E7E9EB]" : "bg-transparent"
         }`}
       >
-        <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
+        <div className="flex items-center justify-between mx-auto">
           {/* Left Menu (Desktop only) */}
           <div
             className={`hidden md:flex transition-colors duration-300 ${

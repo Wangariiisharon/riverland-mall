@@ -2,6 +2,7 @@
 import { Navbar } from "../components/nav";
 import Footer from "../components/footer";
 import { useEffect, useState, Suspense } from "react";
+import { usePathname } from "next/navigation"; // ✅ import this
 import "./globals.css";
 import { Source_Sans_3 } from "next/font/google";
 
@@ -11,39 +12,32 @@ const sourceSans3 = Source_Sans_3({
   display: "swap",
 });
 
-// export const metadata = {
-//   title: {
-//     template: "%s | Riverland Mall",
-//     default: "Riverland Mall",
-//   },
-//   description: "Mall along Kiambu Road",
-//   metadataBase: new URL("https://www.summerix.io"),
-//   openGraph: {
-//     images: ["/images/cover.png"],
-//   },
-//   twitter: {
-//     card: "summary",
-//     creator: "@Riverland Mall",
-//     images: ["/images/cover.png"],
-//   },
-// };
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
   const [showHeaderShadow, setShowHeaderShadow] = useState(false);
 
   useEffect(() => {
     const headerHeight = 80;
-    const handleScroll = () => {
-      setShowHeaderShadow(window.scrollY > headerHeight);
-    };
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+
+    // pages that should toggle on scroll
+    const scrollShadowPaths = ["/", "/directory"];
+
+    if (scrollShadowPaths.includes(pathname)) {
+      const handleScroll = () => {
+        setShowHeaderShadow(window.scrollY > headerHeight);
+      };
+      window.addEventListener("scroll", handleScroll);
+      handleScroll(); // run on mount
+      return () => window.removeEventListener("scroll", handleScroll);
+    } else {
+      // all other pages (e.g. /directory/[slug], /about, etc.)
+      setShowHeaderShadow(true);
+    }
+  }, [pathname]);
 
   return (
     <html lang="en" className={`${sourceSans3.className} scroll-smooth`}>

@@ -3,7 +3,7 @@ import NearbyCarousel from "../components/nearby_carousel";
 import LandingPage from "./home/page";
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import LocationSection from "./location/page";
 
 export default function HomePage() {
@@ -11,10 +11,18 @@ export default function HomePage() {
   const locationRef = useRef<HTMLDivElement | null>(null);
   const contactRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
+  const pathname = usePathname(); // <-- get current path
 
   const [showHeaderShadow, setShowHeaderShadow] = useState(false);
 
   useEffect(() => {
+    // ✅ For all non-homepage routes, always show shadow
+    if (pathname !== "/") {
+      setShowHeaderShadow(true);
+      return;
+    }
+
+    // ✅ Homepage: enable scroll detection
     const headerHeight = 80;
 
     const isSectionVisible = (ref: React.RefObject<HTMLDivElement | null>) => {
@@ -38,21 +46,22 @@ export default function HomePage() {
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // check immediately on load
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   return (
     <div className="">
       <div className="fixed inset-0 z-[-1]"></div>
       <LandingPage />
+
       <main>
         <section
           id="about"
           ref={aboutRef}
-          className="md:pt-[100px] md:px-[160px] pt-[60px] px-[40px] bg-[#E7E9EB] px-4 sm:px-6"
+          className="md:pt-[100px] md:px-[160px] pt-[60px] px-[40px] bg-[#E7E9EB]"
         >
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-start">
+          <div className="mx-auto grid md:grid-cols-2 gap-10 items-start">
             {/* Image */}
-            <div className="relative w-full h-64 sm:h-80 md:h-[500px] rounded-2xl overflow-hidden">
+            <div className="relative w-full h-64 sm:h-80 md:h-[616px] rounded-2xl overflow-hidden">
               <Image
                 src="/img.png"
                 alt="About Riverland Mall"
@@ -62,7 +71,7 @@ export default function HomePage() {
             </div>
 
             {/* Text */}
-            <div className="md:ml-10">
+            <div className="md:ml-[128px]">
               <div className="flex flex-row mb-4">
                 <div className="border-l text-sm border-black"></div>
                 <p className="text-sm tracking-wider text-[#00032E]/50 uppercase ml-2">
@@ -71,7 +80,7 @@ export default function HomePage() {
               </div>
 
               <h2 className="text-2xl sm:text-3xl font-bold text-[#00032E] mb-4 leading-snug">
-                Luxury with Purpose, <br /> Community at Heart
+                Luxury with a Purpose
               </h2>
 
               <p className="text-[#00032E] mb-4 leading-relaxed">
@@ -100,11 +109,11 @@ export default function HomePage() {
         <section
           id="location"
           ref={locationRef}
-          className="md:pt-[136px]  pt-[84px] px-[40px] bg-[#E7E9EB] flex flex-col items-center justify-center md:px-[160px] sm:px-6"
+          className="pt-[84px] px-[40px] bg-[#E7E9EB] flex flex-col md:px-[160px] sm:px-6"
         >
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center w-full">
+          <div className=" mx-auto grid md:grid-cols-2  w-full">
             {/* Text content - Added responsive padding/margin */}
-            <div className="md:ml-10">
+            <div className="">
               <div className="flex flex-row mb-4">
                 <div className="border-l-1 text-sm border-black"></div>
                 <p className="text-sm font-400 tracking-wider text-[#00032E]/50 uppercase ml-2">
@@ -112,8 +121,8 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <h2 className="text-3xl font-bold text-[#00032E] mb-4 leading-snug">
-                Seamlessly Connected, Perfectly Positioned
+              <h2 className=" text-3xl font-bold text-[#00032E] mb-4 leading-snug">
+                Destination Runda
               </h2>
               <p className="text-[#00032E] mb-4 leading-relaxed">
                 Riverland Mall is located in the highly connected neighborhood
@@ -129,15 +138,27 @@ export default function HomePage() {
                 <br />
                 the wider community.
               </p>
+
+              <button
+                className="bg-[#D6A829] text-[#00032E] font-semibold py-2 px-6 rounded-md transition-colors"
+                onClick={() =>
+                  window.open(
+                    "https://www.google.com/maps?q=-1.2086,36.8333",
+                    "_blank"
+                  )
+                }
+              >
+                Get Direction
+              </button>
             </div>
             {/* Left Image */}
             <LocationSection />
           </div>
 
           {/* Nearby section */}
-          <div className="pt-[84px] md:pt-[96px] w-full max-w-6xl pb-[80px]">
+          <div className="pt-[84px] md:pt-[96px] w-full  pb-[80px]">
             <h1 className="text-2xl text-pretty font-medium text-[#00032E] mb-4 text-center">
-              Shop the Riverland Experience
+              The Riverland Experience
             </h1>
             <NearbyCarousel />
           </div>

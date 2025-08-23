@@ -43,7 +43,7 @@ export default function StoreDirectoryPage() {
           className="h-screen w-full bg-[url(/bg.jpg)] bg-cover bg-center flex flex-col items-center  text-center justify-end relative"
         >
           <div className="flex flex-col items-center text-center space-y-6 pb-12">
-            <p className="tracking-wide text-2xl text-[#E7E9EB]">
+            <p className="tracking-wider text-4xl text-[#E7E9EB]">
               STORE DIRECTORY
             </p>
             <div className="text-[#D6A829] mt-4">
@@ -57,9 +57,9 @@ export default function StoreDirectoryPage() {
           id="directory"
           ref={searchDirectoryRef}
           // className="h-screen w-full pt-12 bg-[#E7E9EB] flex flex-col  px-4 sm:px-6 "
-          className="h-screen w-full bg-[#E7E9EB]"
+          className="w-full bg-[#E7E9EB]"
         >
-          <div className="max-w-screen-xl flex flex flex-col justify-cente mx-auto pt-14 px-4">
+          <div className="flex flex flex-col md:px-[160px] px-[40px] md:pt-[86px] pt-[60px] mx-auto">
             <SearchDirectory />
             <Amenities />
           </div>

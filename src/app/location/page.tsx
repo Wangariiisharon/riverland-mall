@@ -6,7 +6,7 @@ export default function LocationSection() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative w-full h-64 sm:h-80 md:h-[500px] rounded-2xl overflow-hidden">
+    <div className="md:ml-[128px] relative w-full h-64  sm:h-80 md:h-[459px] rounded-2xl overflow-hidden">
       {/* Thumbnail image */}
       <Image
         src="/location.png"

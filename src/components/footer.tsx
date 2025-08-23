@@ -1,40 +1,49 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
 
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const AddedAt = new Date().toISOString();
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, AddedAt }),
       });
 
       if (response.ok) {
-        alert("Sent successfully!");
-        setEmail(""); // Clear the form
+        setStatus("success");
+        setEmail("");
       } else {
-        alert("Failed to send message.");
+        setStatus("error");
       }
     } catch (error) {
       console.error("Submission error:", error);
-      alert("An error occurred. Please try again.");
+      setStatus("error");
     }
   };
+  useEffect(() => {
+    if (status !== "idle") {
+      const timer = setTimeout(() => setStatus("idle"), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
 
   return (
-    <footer className="w-full bg-[#172D44]/6 shadow text-[#00032E]">
-      <div className="max-w-7xl mx-auto px-[40px]  py-12 flex flex-col md:flex-row justify-between items-start gap-8">
+    <footer className="w-full bg-[#172D44]/6 md:px-[128px] shadow text-[#00032E]">
+      <div className="mx-auto px-[40px]  py-12 flex flex-col md:flex-row justify-between items-start gap-8">
         {/* Contact Us - Left */}
         <div className="text-[#00032E] w-full md:w-1/2">
-          <h4 className="font-semibold mb-4 text-[#00032E]/50">Contact Us</h4>
+          <h4 className="font-semibold text-xl mb-4 text-[#00032E]/50">
+            Prefer a direct approach?
+          </h4>
           <p className="mb-2">
             Mobile:{" "}
             <a href="tel:+254115771888" className="hover:text-gray-900">
@@ -51,16 +60,24 @@ export default function Footer() {
             </a>
           </p>
           <div className="flex space-x-4 text-[#D6A829]">
-            <a href="#">
+            <a href="https://www.instagram.com/riverlandmall/# ">
               <i className="fab fa-instagram text-xl"></i>
             </a>
-            <a href="#">
+            <a href="https://t.co/Mp3tQdYVCe﻿" target="_blank" rel="noreferrer">
               <i className="fab fa-facebook text-xl"></i>
             </a>
-            <a href="#">
+            <a
+              href="https://x.com/RiverlandMall"
+              target="_blank"
+              rel="noreferrer"
+            >
               <i className="fab fa-x-twitter text-xl"></i>
             </a>
-            <a href="#">
+            <a
+              href="https://www.tiktok.com/@riverlandmall"
+              target="_blank"
+              rel="noreferrer"
+            >
               <i className="fab fa-tiktok text-xl"></i>
             </a>
           </div>
@@ -80,7 +97,7 @@ export default function Footer() {
 
           <form
             onSubmit={handleSubmit}
-            className="mt-6 flex w-full max-w-lg gap-x-2 px-2 md:justify-end"
+            className="mt-6 flex w-full max-w-lg px-2 md:justify-end"
           >
             <input
               type="email"
@@ -94,19 +111,30 @@ export default function Footer() {
               <i className="fas fa-arrow-right"></i>
             </button>
           </form>
+
+          {status === "success" && (
+            <p className="text-green-500 mt-2 font-semibold">
+              We&apos;ll reach out to you
+            </p>
+          )}
+          {status === "error" && (
+            <p className="text-red-500 mt-2">
+              Failed to send. Please try again.
+            </p>
+          )}
         </div>
       </div>
 
       {/* Bottom Bar */}
-      {/* <div className="border-t border-gray-400">
-        <div className="max-w-7xl mx-auto px-8 py-4 flex flex-col md:flex-row justify-between items-center text-sm text-[#00032E]">
+      <div className="border-t border-gray-400">
+        <div className="mx-auto px-8 py-4 flex flex-col md:flex-row justify-between items-center text-sm text-[#00032E]">
           <p>
             © RIVERLAND 2025 • All rights reserved. Any redistribution or
             reproduction of part or all of the contents and images in any form
             is prohibited.
           </p>
         </div>
-      </div> */}
+      </div>
     </footer>
   );
 }

@@ -16,3 +16,15 @@ export interface Stores {
   }[];
   category: string;
 }
+
+// categoryMap.ts
+export const CategoryMap: Record<string, string> = {
+  finedining: "Fine Dining",
+  healthwellness: "Health & Wellness",
+  shopping: "Shopping",
+  entertainment: "Entertainment",
+  outdoor: "Outdoor Space",
+  petrolstation: "Petrol Station",
+  officespace: "Office Space",
+  gym: "Gym",
+};

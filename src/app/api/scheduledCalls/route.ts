@@ -1,0 +1,31 @@
+import { NextResponse } from "next/server";
+import { client } from "@/lib/sanity";
+
+export async function POST(req: Request) {
+  try {
+    const body = await req.json();
+    const { email, date, phone, company } = body;
+
+    // Define the document
+    const doc = {
+      _type: "scheduleCall",
+      email,
+      phone,
+      company,
+      date: new Date(date).toISOString(), // convert to datetime format
+    };
+
+    // Use the Sanity client to create a new document
+    const result = await client.create(doc);
+
+    // Return  successful
+    return NextResponse.json({ message: "Success", result }, { status: 201 });
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    // Return an error
+    return NextResponse.json(
+      { message: "Error submitting form please" },
+      { status: 500 }
+    );
+  }
+}
