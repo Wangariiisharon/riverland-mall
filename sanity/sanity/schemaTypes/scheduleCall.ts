@@ -28,8 +28,3 @@ export const scheduleCallType = defineType({
     }),
   ],
 })
-
-// company: "Domino’s Pizza",
-// phone: "+254 647 75940",
-// email: "info@dominospizaa.com",
-// date: "2025-08-15",

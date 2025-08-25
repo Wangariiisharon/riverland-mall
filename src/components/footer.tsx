@@ -1,11 +1,10 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
-
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,22 +18,15 @@ export default function Footer() {
       });
 
       if (response.ok) {
-        setStatus("success");
+        toast.success("We'll reach out to you soon!");
         setEmail("");
       } else {
-        setStatus("error");
+        toast.error("An error occurred. Please try again.");
       }
     } catch (error) {
       console.error("Submission error:", error);
-      setStatus("error");
     }
   };
-  useEffect(() => {
-    if (status !== "idle") {
-      const timer = setTimeout(() => setStatus("idle"), 4000);
-      return () => clearTimeout(timer);
-    }
-  }, [status]);
 
   return (
     <footer className="w-full bg-[#172D44]/6 md:px-[128px] shadow text-[#00032E]">
@@ -63,7 +55,11 @@ export default function Footer() {
             <a href="https://www.instagram.com/riverlandmall/# ">
               <i className="fab fa-instagram text-xl"></i>
             </a>
-            <a href="https://t.co/Mp3tQdYVCe﻿" target="_blank" rel="noreferrer">
+            <a
+              href="https://facebook.com/RiverlandMall/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <i className="fab fa-facebook text-xl"></i>
             </a>
             <a
@@ -111,23 +107,12 @@ export default function Footer() {
               <i className="fas fa-arrow-right"></i>
             </button>
           </form>
-
-          {status === "success" && (
-            <p className="text-green-500 mt-2 font-semibold">
-              We&apos;ll reach out to you
-            </p>
-          )}
-          {status === "error" && (
-            <p className="text-red-500 mt-2">
-              Failed to send. Please try again.
-            </p>
-          )}
         </div>
       </div>
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-400">
-        <div className="mx-auto px-8 py-4 flex flex-col md:flex-row justify-between items-center text-sm text-[#00032E]">
+        <div className="mx-auto px-8 py-4 flex flex-col md:flex-row justify-between items-center text-centre text-sm text-[#00032E]">
           <p>
             © RIVERLAND 2025 • All rights reserved. Any redistribution or
             reproduction of part or all of the contents and images in any form

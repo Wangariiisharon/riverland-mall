@@ -5,6 +5,7 @@ import { useEffect, useState, Suspense } from "react";
 import { usePathname } from "next/navigation"; // ✅ import this
 import "./globals.css";
 import { Source_Sans_3 } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 const sourceSans3 = Source_Sans_3({
   subsets: ["latin"],
@@ -53,6 +54,7 @@ export default function RootLayout({
           {children}
         </Suspense>
         <Footer />
+        <Toaster />
       </body>
     </html>
   );
