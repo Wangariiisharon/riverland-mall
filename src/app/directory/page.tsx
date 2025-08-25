@@ -38,11 +38,32 @@ export default function StoreDirectoryPage() {
   return (
     <div className="">
       <main>
-        <section
+        {/* <section
           id="landing"
-          className="h-screen w-full bg-[url(/bg.jpg)] bg-cover bg-center flex flex-col items-center  text-center justify-end relative"
+          className="h-screen w-full bg-[url(/store_directory_bg.jpg)] bg-cover bg-center flex flex-col items-center  text-center justify-end relative"
         >
           <div className="flex flex-col items-center text-center space-y-6 pb-12">
+            <p className="tracking-wider text-4xl text-[#E7E9EB]">
+              STORE DIRECTORY
+            </p>
+            <div className="text-[#D6A829] mt-4">
+              <Mouse />
+            </div>
+          </div>
+        </section> */}
+        <section
+          id="landing"
+          className="h-screen w-full relative flex flex-col items-center text-center justify-end"
+        >
+          {/* Background with overlay */}
+          <div className="absolute inset-0">
+            <div className="w-full h-full bg-[url(/store_directory_bg.jpg)] bg-cover bg-center" />
+            {/* Dark gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/60" />
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10 flex flex-col items-center text-center space-y-6 pb-12">
             <p className="tracking-wider text-4xl text-[#E7E9EB]">
               STORE DIRECTORY
             </p>

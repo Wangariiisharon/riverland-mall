@@ -124,7 +124,7 @@ export default function HomePage() {
               <h2 className=" text-3xl font-bold text-[#00032E] mb-4 leading-snug">
                 Destination Runda
               </h2>
-              <p className="text-[#00032E] leading-relaxed">
+              <p className="text-[#00032E] leading-relaxed mb-6">
                 Riverland Mall is located in the highly connected neighborhood
                 of Runda, making it easy to access from key residential and
                 business areas. Its central position ensures steady visitor flow
